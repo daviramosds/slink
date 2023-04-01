@@ -18,7 +18,7 @@ export function Profile({ src }: ProfileProps) {
       </div>
 
       <Link target="_blank" href={"https://github.com/daviramosds"}>
-        <p className="text-blue-600 text-lg my-3">@username</p>
+        <p className="text-blue-600 text-lg my-3">@daviramosds</p>
       </Link>
     </div>
   );
