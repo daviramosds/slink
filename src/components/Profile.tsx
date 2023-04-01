@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProfileProps {
   src: string;
@@ -16,7 +17,9 @@ export function Profile({ src }: ProfileProps) {
         />
       </div>
 
-      <h4 className="text-blue-600 text-lg my-3">@username</h4>
+      <Link target="_blank" href={"https://github.com/daviramosds"}>
+        <p className="text-blue-600 text-lg my-3">@username</p>
+      </Link>
     </div>
   );
 }
