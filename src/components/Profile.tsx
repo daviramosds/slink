@@ -21,7 +21,7 @@ export function Profile({ image, redirect_url, username }: ProfileProps) {
       </div>
 
       <Link target="_blank" href={redirect_url}>
-        <p className="text-blue-600 text-lg mt-2 mb-4">{username}</p>
+        <p className="text-blue-600 font-semibold text-xl mt-2 mb-4">{username}</p>
       </Link>
     </div>
   );
