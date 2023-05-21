@@ -1,6 +1,18 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { getLinks } from "@/lib/hygraph";
+import { Html, Head, Main, NextScript } from "next/document";
+import { useEffect } from "react";
 
 export default function Document() {
+  // const fetchApiData = async () => {
+  //   const links = await getLinks();
+  //   console.log(links)
+  // };
+
+  // useEffect(() => {
+  //   // fetchApiData();
+  //   console.log('test')
+  // }, []);
+
   return (
     <Html lang="en">
       <Head />
@@ -9,5 +21,5 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }

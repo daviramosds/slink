@@ -1,34 +1,28 @@
 import { Card } from "@/components/Card";
 import { Profile } from "@/components/Profile";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
-import { client } from "@/lib/apollo";
-import { gql } from "@apollo/client";
+import { LinkInteface } from "@/interfaces/LinkInteface";
+import { getLinks } from "@/lib/hygraph";
 import { useEffect, useState } from "react";
+import Loading from "./loading";
 
 export default function Home() {
-
-  const [items, setItems] = useState([{}])
+  const [items, setItems] = useState([{}]);
+  const [isLoading, setLoading] = useState(true);
 
   const fetchApiData = async () => {
-    const { data } = await client.query({
-      query: gql`
-        query Assets {
-          links {
-            id
-            slug
-            title
-            url
-          }
-        }
-      `,
-    });
+    const links = await getLinks();
 
-    setItems(data.links)
+    setItems(links);
+
+    setLoading(false);
   };
 
   useEffect(() => {
-    fetchApiData()
-  }, [])
+    fetchApiData();
+  }, []);
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="w-full h-screen flex items-center justify-center flex-col gap-6 dark:bg-slate-900">
@@ -37,10 +31,12 @@ export default function Home() {
         redirect_url="https://github.com/daviramosds"
         username="@daviramosds"
       />
-      <Card src="https://github.com/daviramosds" title="github" />
+
+      {items.map((link: LinkInteface | any) => (
+        <Card key={link.id} title={link.title} src={link.url} />
+      ))}
 
       <ThemeSwitcher />
-      <button onClick={fetchApiData}>Test</button>
     </div>
   );
 }
