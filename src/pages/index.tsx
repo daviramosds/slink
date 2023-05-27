@@ -4,7 +4,7 @@ import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { LinkInteface } from "@/interfaces/LinkInteface";
 import { getLinks } from "@/lib/hygraph";
 import { useEffect, useState } from "react";
-import Loading from "./loading";
+import Loading from "@/pages/loading";
 
 export default function Home() {
   const [items, setItems] = useState([{}]);
